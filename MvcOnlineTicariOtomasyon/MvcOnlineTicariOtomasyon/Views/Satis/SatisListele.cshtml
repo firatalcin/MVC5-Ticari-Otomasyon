@@ -1,0 +1,39 @@
+﻿@using MvcOnlineTicariOtomasyon.Models.Siniflar
+@model List<SatisHareket>
+@{
+    ViewBag.Title = "SatisListele";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<table class="table table-striped">
+    <tr>
+        <th>Id</th>
+        <th>Ürün</th>
+        <th>Cari</th>
+        <th>Personel</th>
+        <th>Adet</th>
+        <th>Fiyat</th>
+        <th>Toplam</th> 
+        <th>Tarih</th>
+        <th>Güncelle</th>
+        <th>Detaylar</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>@item.SatisId</td>
+    <td>@item.Urun.UrunAd</td>
+    <td>@item.Cariler.CariAd @item.Cariler.CariSoyad</td>
+    <td>@item.Personel.PersonelAd @item.Personel.PersonelSoyad</td>
+    <td>@item.Adet</td>
+    <td>@item.Fiyat</td>
+    <td>@item.ToplamTutar</td>
+    <td>@item.Tarih</td>
+    <td><a href="/Satis/SatisGetir/@item.PersonelId" class="btn btn-warning">Güncelle</a></td>
+    <td><a href="/Departman/DepartmanPersonelSatis/@item.PersonelId" class="btn btn-secondary">Detaylar</a></td>
+</tr>
+    }
+</table>
+
+<a href="/Satis/SatisEkle" class="btn btn-primary">Yeni Satış Yap</a>
+
